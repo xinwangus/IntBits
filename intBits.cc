@@ -121,6 +121,32 @@ change_endian(unsigned int a)
 	return ret;
 }
 
+
+unsigned int
+countBitsSet1(unsigned int in)
+{
+	unsigned int c = 0;
+
+	while (in) {
+		if (in & 1) { c++; }
+		in = in >> 1;
+	}
+	return c;
+}
+
+// even better, to avoid counting sequences of 0's more than once.
+unsigned int
+countBitsSet2(unsigned int in);
+{
+	unsigned int c = 0;
+	while (in) {
+		// get rid of 1 set bit each time.
+		in = in & (in -1);
+		c++;
+	}
+	return c;
+}
+
 int
 main()
 {
